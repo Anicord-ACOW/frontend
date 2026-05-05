@@ -26,3 +26,6 @@ vite.config.ts.timestamp-*
 flake.nix
 flake.lock
 shell.nix
+
+# Vscode
+.vscode/
