@@ -46,3 +46,34 @@ but if people don't like it i will change it
 	--depth: 1;
 	--noise: 1;
 }
+
+/* fonts */
+@font-face {
+  font-family: 'Lexend';
+  src: url('../fonts/lexend.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Martian Mono';
+  src: url('../fonts/martian-mono.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Serrif';
+  src: url('../fonts/serrif.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: "Lexend", "sans-serif";
+  --font-serif: "Serrif", "serif";
+  --font-mono: "Martian Mono", "monospace";
+}

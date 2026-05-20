@@ -4,7 +4,7 @@
 	import FaqItem from '$lib/components/landing/FaqItem.svelte';
 
 	function handleLogin() {
-		console.log('login button clicked idk ill do this later');
+		window.location.href = `/dashboard`;
 	}
 </script>
 
