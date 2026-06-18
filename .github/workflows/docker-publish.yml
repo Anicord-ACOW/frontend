@@ -8,6 +8,9 @@ on:
   push:
     # We keep tags so you can still manually trigger a build by tagging a release
     tags: [ 'v*.*.*' ]
+    branches:
+      - main
+      - dev
 
 env:
   REGISTRY: ghcr.io
