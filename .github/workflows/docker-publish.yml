@@ -1,20 +1,11 @@
 name: Docker
 
 on:
-  workflow_run:
-    workflows: ["CodeQL Advanced"] # Make sure this matches the 'name:' inside your codeql.yml
-    types:
-      - completed
-    branches:
-      - main
-      - dev
-
   push:
-    # We keep tags so you can still manually trigger a build by tagging a release
-    tags: [ 'v*.*.*' ]
     branches:
       - main
       - dev
+    tags: [ 'v*.*.*' ]
 
 env:
   REGISTRY: ghcr.io
@@ -22,9 +13,6 @@ env:
 
 jobs:
   build:
-# CRITICAL: Only run if CodeQL passed AND it belongs to one of your target workflows
-    if: github.event.workflow_run.conclusion == 'success'
-
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -36,8 +24,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.workflow_run.head_branch || github.ref }}
 
       # Install the cosign tool except on PR
       # https://github.com/sigstore/cosign-installer
