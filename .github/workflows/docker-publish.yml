@@ -18,9 +18,12 @@ env:
 
 jobs:
   build:
-    # CRITICAL: Only run if CodeQL actually passed. 
-    # If CodeQL fails, we don't want to build a vulnerable image.
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+# CRITICAL: Only run if CodeQL passed AND it belongs to one of your target workflows
+    if: |
+      github.event.workflow_run.conclusion == 'success' && 
+      (
+        github.event.workflow_run.event == 'push' && (github.event.workflow_run.head_branch == 'main' || github.event.workflow_run.head_branch == 'dev')
+      )
 
     runs-on: ubuntu-latest
     permissions:
