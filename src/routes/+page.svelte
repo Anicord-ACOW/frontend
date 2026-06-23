@@ -2,18 +2,13 @@
 	import { app } from '$lib/config';
 	import Footer from '$lib/components/Footer.svelte';
 	import FaqItem from '$lib/components/landing/FaqItem.svelte';
+	import Navbar from '$lib/components/Navbar.svelte';
 
-	function handleLogin() {
-		window.location.href = `/dashboard`;
-	}
+	let { data } = $props();
 </script>
 
 <div class="bg-base-100 text-base-content flex min-h-screen flex-col">
-	<!-- navbar -->
-	<div class="px-6 py-4 border-base-300 flex w-full items-center justify-between border-b">
-		<div class="text-xl font-bold">{app.name}</div>
-		<button class="btn btn-primary" onclick={handleLogin}>login</button>
-	</div>
+	<Navbar user={data.user} />
 
 	<!-- hero -->
 	<main class="flex-1">
@@ -25,7 +20,7 @@
 					<p class="text-lg opacity-80">placeholder text aaaa i like women they're so cute ehehe</p>
 
 					<div class="gap-3 lg:justify-start flex justify-center">
-						<button class="btn btn-primary" onclick={handleLogin}>view dashboard</button>
+						<a href="/dashboard" class="btn btn-primary">view dashboard</a>
 						<button class="btn btn-outline">learn more</button>
 					</div>
 				</div>
