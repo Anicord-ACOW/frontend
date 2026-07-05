@@ -26,8 +26,8 @@ export const load: PageServerLoad = async ({ cookies, parent }) => {
 };
 
 export const actions: Actions = {
-	update: async ({ request, cookies, parent }) => {
-		const { apiUrl } = await parent();
+	update: async ({ request, cookies }) => {
+		const apiUrl = env.API_URL;
 		const token = cookies.get('auth-token');
 		const fd = await request.formData();
 
