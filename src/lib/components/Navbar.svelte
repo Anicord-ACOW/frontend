@@ -1,5 +1,8 @@
 <script lang="ts">
 	import { app } from '$lib/config';
+	import { PUBLIC_API_URL } from '$env/static/public';
+
+	const apiUrl = PUBLIC_API_URL;
 
 	interface User {
 		id: string;
@@ -10,22 +13,24 @@
 	let { user = null }: { user: User | null } = $props();
 </script>
 
-<nav class="px-6 py-3 border-base-300 flex w-full items-center justify-between border-b bg-base-100/80 backdrop-blur-md sticky top-0 z-50">
+<nav
+	class="px-6 py-3 border-base-300 bg-base-100/80 backdrop-blur-md top-0 sticky z-50 flex w-full items-center justify-between border-b"
+>
 	<!-- Brand -->
-	<a href="/" class="flex items-center gap-2.5 hover:opacity-80 transition-opacity">
+	<a href="/" class="gap-2.5 flex items-center transition-opacity hover:opacity-80">
 		<img src="/Anicord_Logo.png" alt="Anicord Logo" class="h-7 w-7 object-contain" />
 		<span class="text-lg font-bold tracking-tight">{app.name}</span>
 	</a>
 
 	<!-- Right side -->
-	<div class="flex items-center gap-3">
+	<div class="gap-3 flex items-center">
 		{#if user}
 			<!-- User dropdown -->
 			<div class="dropdown relative">
 				<button
 					id="navbar-user-dropdown"
 					type="button"
-					class="dropdown-toggle flex items-center gap-2.5 rounded-xl px-3 py-1.5 hover:bg-base-200 transition-colors duration-200 cursor-pointer"
+					class="dropdown-toggle gap-2.5 rounded-xl px-3 py-1.5 hover:bg-base-200 flex cursor-pointer items-center transition-colors duration-200"
 					aria-haspopup="menu"
 					aria-expanded="false"
 					aria-label="User menu"
@@ -33,14 +38,14 @@
 					<img
 						src={user.avatarUrl}
 						alt={user.username}
-						class="h-8 w-8 rounded-full object-cover ring-2 ring-primary/30"
+						class="h-8 w-8 ring-primary/30 rounded-full object-cover ring-2"
 					/>
 					<span class="text-sm font-medium">{user.username}</span>
 					<span class="icon-[tabler--chevron-down] text-base opacity-60"></span>
 				</button>
 
 				<ul
-					class="dropdown-menu dropdown-open:opacity-100 hidden min-w-44"
+					class="dropdown-menu dropdown-open:opacity-100 min-w-44 hidden"
 					role="menu"
 					aria-orientation="vertical"
 					aria-labelledby="navbar-user-dropdown"
@@ -74,7 +79,7 @@
 			</div>
 		{:else}
 			<!-- Login button -->
-			<a href="/login" class="btn btn-primary btn-sm gap-2">
+			<a href={`${apiUrl}/auth/discord/login`} class="btn btn-primary btn-sm gap-2">
 				<span class="icon-[tabler--brand-discord-filled] text-base"></span>
 				Login
 			</a>

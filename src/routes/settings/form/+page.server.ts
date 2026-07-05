@@ -1,9 +1,11 @@
 import { redirect, fail } from '@sveltejs/kit';
-import { env } from '$env/dynamic/private';
+import { PUBLIC_API_URL } from '$env/static/public';
 import type { PageServerLoad, Actions } from '../$types';
 
+const apiUrl = PUBLIC_API_URL;
+
 export const load: PageServerLoad = async ({ cookies, parent }) => {
-	const { apiUrl, user } = await parent();
+	const { user } = await parent();
 
 	if (!user) redirect(302, '/login');
 
@@ -27,7 +29,6 @@ export const load: PageServerLoad = async ({ cookies, parent }) => {
 
 export const actions: Actions = {
 	update: async ({ request, cookies }) => {
-		const apiUrl = env.API_URL;
 		const token = cookies.get('auth-token');
 		const fd = await request.formData();
 
