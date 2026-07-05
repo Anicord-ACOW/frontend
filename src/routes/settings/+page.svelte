@@ -31,7 +31,7 @@
 </svelte:head>
 
 <div class="bg-base-100 text-base-content flex min-h-screen flex-col">
-	<Navbar user={data.user} />
+	<!--<Navbar user={data.user} apiUrl={data.apiUrl} /> -->
 
 	<main class="px-4 py-8 sm:px-6 lg:px-8 flex-1">
 		<div class="max-w-4xl space-y-6 mx-auto">

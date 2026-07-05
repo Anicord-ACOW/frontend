@@ -1,8 +1,5 @@
 <script lang="ts">
 	import { app } from '$lib/config';
-	import { PUBLIC_API_URL } from '$env/static/public';
-
-	const apiUrl = PUBLIC_API_URL;
 
 	interface User {
 		id: string;
@@ -10,7 +7,7 @@
 		avatarUrl: string;
 	}
 
-	let { user = null }: { user: User | null } = $props();
+	let { user = null, apiUrl }: { user: User | null; apiUrl: string } = $props();
 </script>
 
 <nav

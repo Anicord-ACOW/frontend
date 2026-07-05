@@ -8,7 +8,7 @@
 </script>
 
 <div class="bg-base-100 text-base-content flex min-h-screen flex-col">
-	<Navbar user={data.user} />
+	<!-- <Navbar user={data.user} apiUrl={data.apiUrl} /> -->
 
 	<!-- hero -->
 	<main class="flex-1">

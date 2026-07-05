@@ -1,8 +1,8 @@
 import { redirect, fail } from '@sveltejs/kit';
-import { PUBLIC_API_URL } from '$env/static/public';
+import { env } from '$env/dynamic/private';
 import type { PageServerLoad, Actions } from '../$types';
 
-const apiUrl = PUBLIC_API_URL;
+const apiUrl = env.API_URL;
 
 export const load: PageServerLoad = async ({ cookies, parent }) => {
 	const { user } = await parent();
