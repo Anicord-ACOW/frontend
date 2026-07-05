@@ -13,8 +13,8 @@
 		const code = urlParams.get('code');
 
 		if (!code) {
-			errorMessage = 'No authorization code found. Redirecting back to login...';
-			setTimeout(() => goto('/login'), 2500);
+			errorMessage = 'No authorization code found. Redirecting back...';
+			setTimeout(() => goto('/'), 2500);
 			return;
 		}
 
@@ -27,7 +27,7 @@
 			const response = await fetch(`${apiUrl}/auth/discord/callback?code=${code}`, {
 				method: 'GET',
 				headers: {
-					'Accept': 'application/json'
+					Accept: 'application/json'
 				},
 				credentials: 'include'
 			});
@@ -45,11 +45,9 @@
 			}
 
 			statusMessage = 'Success! Welcome to Anicord. Redirecting...';
-			setTimeout(() => goto('/dashboard'), 1200);
+			setTimeout(() => goto('/'), 1200);
 		} catch (err) {
 			console.error('Authentication callback error:', err);
-			errorMessage = 'Failed to authenticate. The session code may be expired or invalid.';
-			setTimeout(() => goto('/login?error=auth_failed'), 3500);
 		}
 	});
 </script>
@@ -58,31 +56,51 @@
 	<title>Authenticating | {app.name}</title>
 </svelte:head>
 
-<div class="relative flex min-h-screen items-center justify-center overflow-hidden bg-base-100 px-4 py-12 sm:px-6 lg:px-8">
+<div
+	class="bg-base-100 px-4 py-12 sm:px-6 lg:px-8 relative flex min-h-screen items-center justify-center overflow-hidden"
+>
 	<!-- Background decorative glows -->
-	<div class="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-primary/10 blur-3xl filter animate-pulse duration-4000"></div>
-	<div class="absolute -bottom-40 -right-40 h-96 w-96 rounded-full bg-secondary/15 blur-3xl filter animate-pulse duration-6000"></div>
-	<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full bg-accent/5 blur-3xl filter"></div>
+	<div
+		class="-top-40 -left-40 h-96 w-96 bg-primary/10 blur-3xl animate-pulse absolute rounded-full filter duration-4000"
+	></div>
+	<div
+		class="-bottom-40 -right-40 h-96 w-96 bg-secondary/15 blur-3xl animate-pulse absolute rounded-full filter duration-6000"
+	></div>
+	<div
+		class="bg-accent/5 blur-3xl absolute top-1/2 left-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full filter"
+	></div>
 
 	<!-- Card container -->
-	<div class="relative w-full max-w-md transform overflow-hidden rounded-2xl border border-base-300/40 bg-base-200/40 p-8 shadow-2xl backdrop-blur-xl transition-all duration-300">
-		<div class="absolute inset-0 -z-10 bg-gradient-to-tr from-primary/5 via-transparent to-secondary/10 opacity-50"></div>
+	<div
+		class="max-w-md rounded-2xl border-base-300/40 bg-base-200/40 p-8 shadow-2xl backdrop-blur-xl relative w-full transform overflow-hidden border transition-all duration-300"
+	>
+		<div
+			class="inset-0 from-primary/5 to-secondary/10 absolute -z-10 bg-gradient-to-tr via-transparent opacity-50"
+		></div>
 
-		<div class="flex flex-col items-center text-center space-y-8">
+		<div class="space-y-8 flex flex-col items-center text-center">
 			<!-- Animated loader / status representation -->
 			{#if errorMessage}
 				<!-- Error state -->
-				<div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-error/20 text-error shadow-lg shadow-error/15 animate-bounce">
+				<div
+					class="h-16 w-16 rounded-2xl bg-error/20 text-error shadow-lg shadow-error/15 animate-bounce flex items-center justify-center"
+				>
 					<span class="icon-[tabler--alert-triangle] text-3xl"></span>
 				</div>
 			{:else}
 				<!-- Loading state -->
 				<div class="relative flex items-center justify-center">
 					<!-- Outer ring -->
-					<div class="h-20 w-20 rounded-full border-4 border-primary/20 border-t-primary animate-spin"></div>
+					<div
+						class="h-20 w-20 border-primary/20 border-t-primary animate-spin rounded-full border-4"
+					></div>
 					<!-- Inner logo pulsing -->
-					<div class="absolute h-10 w-10 animate-pulse">
-						<img src="/Anicord_Logo.png" alt="Logo" class="h-full w-full object-contain opacity-80" />
+					<div class="h-10 w-10 animate-pulse absolute">
+						<img
+							src="/Anicord_Logo.png"
+							alt="Logo"
+							class="h-full w-full object-contain opacity-80"
+						/>
 					</div>
 				</div>
 			{/if}
@@ -96,8 +114,12 @@
 						Completing Sign In
 					{/if}
 				</h2>
-				
-				<p class="text-sm {errorMessage ? 'text-error' : 'text-base-content/70'} max-w-xs transition-colors duration-300">
+
+				<p
+					class="text-sm {errorMessage
+						? 'text-error'
+						: 'text-base-content/70'} max-w-xs transition-colors duration-300"
+				>
 					{errorMessage || statusMessage}
 				</p>
 			</div>
@@ -105,8 +127,8 @@
 			<!-- Footer redirect links -->
 			{#if errorMessage}
 				<div class="pt-4 w-full">
-					<a href="/login" class="btn btn-outline btn-error btn-sm w-full gap-2">
-						<span class="icon-[tabler--arrow-left] text-sm"></span> Return to Login
+					<a href="/" class="btn btn-outline btn-error btn-sm gap-2 w-full">
+						<span class="icon-[tabler--arrow-left] text-sm"></span> Return to Home
 					</a>
 				</div>
 			{/if}

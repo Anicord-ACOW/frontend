@@ -6,7 +6,7 @@ export const load: PageServerLoad = async ({ cookies, parent }) => {
 
 	// Redirect to login if not authenticated
 	if (!user) {
-		redirect(302, '/login');
+		redirect(302, '/');
 	}
 
 	const token = cookies.get('auth-token');

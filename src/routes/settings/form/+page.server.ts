@@ -7,7 +7,7 @@ const apiUrl = env.API_URL;
 export const load: PageServerLoad = async ({ cookies, parent }) => {
 	const { user } = await parent();
 
-	if (!user) redirect(302, '/login');
+	if (!user) redirect(302, '/');
 
 	const token = cookies.get('auth-token');
 	let signupForm = null;
