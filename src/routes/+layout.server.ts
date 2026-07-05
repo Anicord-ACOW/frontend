@@ -1,7 +1,7 @@
 import { env } from '$env/dynamic/private';
 import type { LayoutServerLoad } from './$types';
 
-export const load: LayoutServerLoad = async ({ cookies }) => {
+export const load: LayoutServerLoad = async ({ cookies, fetch }) => {
 	const apiUrl = env.API_ORIGIN || 'http://localhost:3000';
 	const token = cookies.get('auth-token');
 
@@ -10,9 +10,7 @@ export const load: LayoutServerLoad = async ({ cookies }) => {
 	if (token) {
 		try {
 			const res = await fetch(`${apiUrl}/users/me`, {
-				headers: {
-					Cookie: `auth-token=${token}`
-				}
+				credentials: 'include'
 			});
 			if (res.ok) {
 				const data = await res.json();
