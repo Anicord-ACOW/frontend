@@ -29,7 +29,7 @@ export const load: PageServerLoad = async ({ cookies, parent }) => {
 
 export const actions: Actions = {
 	update: async ({ request, cookies }) => {
-		const token = cookies.get('auth-token');
+	const token = cookies.get('auth-token') || cookies.get('__Http-auth-token');
 		const fd = await request.formData();
 
 		const get = (key: string) => (fd.get(key) as string) ?? '';
