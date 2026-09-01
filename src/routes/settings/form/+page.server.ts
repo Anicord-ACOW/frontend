@@ -9,7 +9,7 @@ export const load: PageServerLoad = async ({ cookies, parent }) => {
 
 	if (!user) redirect(302, '/');
 
-	const token = cookies.get('auth-token');
+	const token = cookies.get('auth-token') || cookies.get('__Http-auth-token');
 	let signupForm = null;
 
 	try {
