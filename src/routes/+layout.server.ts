@@ -2,7 +2,7 @@ import { env } from '$env/dynamic/private';
 import type { LayoutServerLoad } from './$types';
 
 export const load: LayoutServerLoad = async ({ fetch, request }) => {
-	const apiUrl = env.API_ORIGIN || 'http://localhost:3000';
+	const apiUrl = env.API_URL || 'http://localhost:3000';
 
 
 	let user = null;
