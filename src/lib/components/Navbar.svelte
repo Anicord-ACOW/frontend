@@ -5,6 +5,7 @@
 		id: string;
 		username: string;
 		avatarUrl: string;
+		roles?: string[];
 	}
 
 	let { user = null, apiUrl }: { user: User | null; apiUrl: string } = $props();
@@ -53,6 +54,14 @@
 							Dashboard
 						</a>
 					</li>
+					{#if user.roles?.includes('admin')}
+						<li role="menuitem">
+							<a href="/admin" class="dropdown-item gap-2.5 text-accent">
+								<span class="icon-[tabler--shield-lock] text-lg"></span>
+								Admin Panel
+							</a>
+						</li>
+					{/if}
 					<li role="menuitem">
 						<a href="/settings" class="dropdown-item gap-2.5">
 							<span class="icon-[tabler--settings] text-lg opacity-70"></span>

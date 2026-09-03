@@ -91,6 +91,63 @@
 		{ value: 'ULTIMATE', label: 'Game Pass Ultimate' },
 		{ value: 'NONE', label: 'I do not have Game Pass' }
 	];
+
+	const REP_GROUPS = [
+		'5Toubun',
+		'86',
+		'Beastars',
+		'BLEACH',
+		'Bocchi the Rock',
+		'Bunny Girl Senpai',
+		'Classroom of the Elite',
+		'Code Geass',
+		'Dress-Up Darling',
+		'Eminence of Shadow',
+		'Fairy Tail x Eden Zero',
+		'Fate Type/Moon',
+		'Frieren',
+		'Gachiakuta',
+		'Gokurakugai',
+		'Girls Band Cry',
+		'Houseki no Kuni',
+		"Jellyfish Can't Swim",
+		'K-On',
+		'Kaoru Hana (Butter)',
+		'Kaoru Hana (Underw_st)',
+		'Kaguya Love is War',
+		'Kings Proposal',
+		"Komi Can't Communicate",
+		'Lycoris Recoil',
+		'Oshi no Ko',
+		'Madoka',
+		'Makeine',
+		'Mushoku Tensei',
+		'Nokotan',
+		'Tokyo Revengers',
+		'Onimai',
+		'Otonari no Tenshi',
+		'Overlord',
+		'Precure',
+		'Re:Zero',
+		'Rent a Girlfriend',
+		'Roshidere',
+		'Sakamoto Days',
+		'Shield Hero',
+		'Slime Isekai',
+		'Spider Isekai',
+		'Spy x Family',
+		'Sword Art Online',
+		'Tearmoon Empire',
+		'Tonikawa',
+		'Tower of God',
+		'Undead Unluck',
+		'Vanitas no Carte',
+		'Vivy',
+		'Welcome to Demon School Iruma-kun',
+		'Witch Hat Atelier',
+		'World Trigger',
+		'Anicord Event Server'
+	];
 </script>
 
 <svelte:head>
@@ -156,14 +213,16 @@
 								>
 									Representative Server
 								</label>
-								<input
+								<select
 									id="repServer"
 									name="repServer"
-									type="text"
-									class="input input-bordered w-full"
-									value={f.repServer ?? ''}
-									placeholder="e.g. Frieren"
-								/>
+									class="select select-bordered w-full"
+								>
+									<option value="">— select server —</option>
+									{#each REP_GROUPS as group}
+										<option value={group} selected={f.repServer === group}>{group}</option>
+									{/each}
+								</select>
 							</div>
 
 							<div class="space-y-1.5">
